@@ -1,4 +1,12 @@
-module MyData where
+module MyData ( 
+    Name(..)
+  , Price(..)
+  , Category(..)
+  , Item(..)
+  , Cart(..)
+  , BonusCard(..)
+  )
+where
 
 
 newtype Name = Name String deriving (Show, Read, Eq)
