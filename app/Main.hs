@@ -1,7 +1,6 @@
 module Main (main) where
 
 import Lib
-import MyData ()
 import System.Environment (getArgs)
 import GHC.IO.Encoding (setLocaleEncoding, utf8, getLocaleEncoding)
 import System.IO.CodePage (withCP65001)
