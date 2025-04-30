@@ -14,4 +14,4 @@ main = withCP65001 $ do
     case args of
         [itemsFile, cartFile] -> runProgram itemsFile cartFile Nothing
         [itemsFile, cartFile, bonusFile] -> runProgram itemsFile cartFile (Just bonusFile)
-        _ -> putStrLn "Enter: items.txt cart.txt bonus.txt(при наличии)"
+        _ -> putStrLn "Enter: items.txt cart.txt bonus.txt(or without)"
