@@ -20,13 +20,13 @@ import System.Environment ()
 import Data.List.Split
 
 
--- стоимость корзины без скидки
+-- cart amount without discount
 cartTotal :: Cart -> Float
 cartTotal (Cart items) = sum [ getPrice item * fromIntegral qty |(item, qty) <- items ]
   where
     getPrice (Item _ (Price p) _) = p
 
--- Расчет скидки:день рождения, сумма заказа большая и категория фрукты
+-- Discount calculation:birth day, big amount  and category fruits
 calculateDiscount :: Cart -> BonusCard -> IO Float
 calculateDiscount cart (BonusCard birth baseDiscount) = do
     currentTime <- getCurrentTime
@@ -43,7 +43,7 @@ calculateDiscount cart (BonusCard birth baseDiscount) = do
     thd3 (_, _, y) = y
     isCategory cat (Item _ _ c, _) = c == cat
 
--- Вывод чека 
+-- Recipt print
 printReceiptIO :: Cart -> BonusCard -> IO ()
 printReceiptIO cart@(Cart items) card = do
     let total = cartTotal cart
@@ -105,12 +105,12 @@ readCartFile :: FilePath -> [Item] -> IO (Either String Cart)
 readCartFile path items = do
     content <- readFile path 
     putStrLn content
-    case checkCartLines content of --проверка формата
+    case checkCartLines content of --format check
         Left err -> return $ Left err
         Right c -> do
                 let content1 = (chunksOf 2  c)
-                printWarnings2 content1 items -- если товаров из корзины нету в items
-                let filCont = filteredContent content1 items--если нету каких-то товаров убираем
+                printWarnings2 content1 items 
+                let filCont = filteredContent content1 items-- filter ites that not in store
                 let con = Cart (makeCartData filCont items)
                 return $ Right con
 
