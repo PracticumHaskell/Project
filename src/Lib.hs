@@ -13,7 +13,7 @@ module Lib
   , runProgram
   ) where
 
-
+import MyData
 import Data.Time.Clock
 import Data.Time.Calendar
 import System.Environment ()
