@@ -5,19 +5,20 @@ newtype Name = Name String deriving (Show, Read, Eq)
 newtype Price = Price Float deriving (Show, Read, Eq)
 newtype Category = Category String deriving (Show, Read, Eq)
 
+
 data Item = Item {
     itemName     :: Name,
     itemPrice    :: Price,
     itemCategory :: Category
 } deriving (Show, Read, Eq)
 
--- Корзина
+-- Cart
 data Cart = Cart {
     cartItems :: [(Item, Int)]
 } deriving (Show, Read)
 
--- Бонусная карта
+-- Bonus card
 data BonusCard = BonusCard {
-    birthDate :: (Int, Int, Int),  -- (год, месяц, день)
-    basediscount  :: Float  -- скидка до 7%
+    birthDate :: (Int, Int, Int), --(year,month,date)
+    basediscount  :: Float  -- discount not more than 7%
 } deriving (Show, Read)
